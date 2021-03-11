@@ -1,0 +1,80 @@
+<ng-container *ngIf="fs">
+  <h3 class=" mb-2">Toutes les infos sur {{fs.fs_nom}} </h3>
+  <div class="mb-3">
+    <div class="card card-size-media-big mr-2 mb-2" style="width: 18rem;">
+      <img src="{{fs.fs_img}}" class="card-img-top" alt="image de couverture de {{fs.fs_nom}}">
+      <div class="card-body">
+        <h5 class="card-title">{{fs.fs_nom}}</h5>
+        <p class="card-text">Synopsis : {{fs.fs_synopsis}}</p>
+        <p class="card-text">Date de sortie : {{fs.fs_date_sortie | date }}</p>
+        <p class="card-text">Type : {{fs.ty_type.ty_type}}</p>
+        <p class="card-text">Genre : {{fs.ge_genre.ge_nom}}</p>
+        <ng-container *ngIf="fs.ty_type.ty_id == 1">
+          <p class="card-text">Nombre de saisons : {{fs.fs_saison}}</p>
+          <p class="card-text">Nombre total d'épisode : {{fs.fs_episode}}</p>
+        </ng-container>
+        <a routerLink="./addPers">
+          <p class="btn btn-outline">Ajouter des personnes sur le film</p>
+        </a>
+      </div>
+    </div>
+    <h4 class="mb-2">Les réalisateurs</h4>
+    <div class="row">
+      <div class="card col-12 col-md-4 mx-auto mb-2" style="width: 18rem;" *ngFor="let per of realisateurInFilm">
+        <!-- <img src="{{per.per_url}}" class="card-img-top" alt="..."> -->
+        <div class="card-body">
+          <div class="hover_img">
+            <a>
+              <h5 class="card-title">{{per.per_nom}} {{per.per_prenom}}</h5><span><img src="{{per.per_url}}" alt="image"
+                  height="300px" /></span>
+            </a>
+          </div>
+          <p class="card-text">Nom : {{per.per_nom}}</p>
+          <p class="card-text">Prenom : {{per.per_prenom}}</p>
+          <p class="card-text">Date de naissance : {{per.per_ddn | date }}</p>
+          <p class="card-text">Genre : {{per.per_genre}} </p>
+          <button class="btn btn-outline1" (click)="removeFromFilm(2, fs.fs_id, per.per_id)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+    <h4 class="mb-2">Les producteurs</h4>
+    <div class="row">
+      <div class="card col-12 col-md-4 mx-auto mb-2 hoover-card" style="width: 18rem;"
+        *ngFor="let per of producteurInFilm">
+        <!-- <img src="{{per.per_url}}" class="card-img-top" alt="..."> -->
+        <div class="card-body">
+          <div class="hover_img">
+            <a>
+              <h5 class="card-title">{{per.per_nom}} {{per.per_prenom}}</h5><span><img src="{{per.per_url}}" alt="image"
+                  height="300px" /></span>
+            </a>
+          </div>
+          <p class="card-text">Nom : {{per.per_nom}}</p>
+          <p class="card-text">Prenom : {{per.per_prenom}}</p>
+          <p class="card-text">Date de naissance : {{per.per_ddn | date }}</p>
+          <p class="card-text">Genre : {{per.per_genre}} </p>
+          <button class="btn btn-outline1" (click)="removeFromFilm(3, fs.fs_id, per.per_id)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+    <h4 class="mb-2">Les acteurs Principaux</h4>
+    <div class="row">
+      <div class="card col-12 col-md-4 mx-auto mb-2" style="width: 18rem;" *ngFor="let per of acteursInFilm">
+        <!-- <img src="{{per.per_url}}" class="card-img-top" alt="..."> -->
+        <div class="card-body">
+          <div class="hover_img">
+            <a>
+              <h5 class="card-title">{{per.per_nom}} {{per.per_prenom}}</h5><span><img src="{{per.per_url}}" alt="image"
+                  height="300px" /></span>
+            </a>
+          </div>
+          <p class="card-text">Nom : {{per.per_nom}}</p>
+          <p class="card-text">Prenom : {{per.per_prenom}}</p>
+          <p class="card-text">Date de naissance : {{per.per_ddn | date }}</p>
+          <p class="card-text">Genre : {{per.per_genre}} </p>
+          <button class="btn btn-outline1" (click)="removeFromFilm(1,fs.fs_id, per.per_id)">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

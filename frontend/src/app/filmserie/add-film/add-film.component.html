@@ -1,0 +1,50 @@
+<div class=container>
+  <form [formGroup]="this.formAddFilm">
+    <div class="form-group">
+      <label for="fs_nom">Nom</label>
+      <input type="text" class="form-control" id="fs_nom" formControlName="fs_nom">
+    </div>
+    <div class="form-group">
+      <label for="fs_synopsis">Synopsis</label>
+      <input type="text" class="form-control" id="fs_synopsis" formControlName="fs_synopsis">
+    </div>
+    <div class="form-group">
+      <label for="fs_date_sortie">Date de Sortie</label>
+      <input type="date" class="form-control" id="fs_date_sortie" formControlName="fs_date_sortie">
+    </div>
+    <div class="form-group">
+      <label for="fs_img">Url vers photo</label>
+      <input type="text" class="form-control" id="fs_img" formControlName="fs_img">
+    </div>
+    <div class="form-group">
+      <label for="ge_genre">Choix du genre</label>
+      <select class="custom-select" id="ge_genre" formControlName="ge_genre">
+        <option value="0">Choisir un genre</option>
+        <option [value]="g.ge_id" *ngFor="let g of allGenres">{{g.ge_nom}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="ty_type">Choix du type</label>
+      <select class="custom-select" id="ty_type" formControlName="ty_type" [(ngModel)]="optionSelected">
+        <option value="0">Choisir un type</option>
+        <option [value]="t.ty_id" *ngFor="let t of allTypes">{{t.ty_type}}</option>
+      </select>
+    </div>
+    <ng-container *ngIf="optionSelected == 1">
+      <div class="form-group">
+        <label for="fs_saison">Nombre de saison(s)</label>
+        <input type="number" class="form-control" id="fs_saison" formControlName="fs_saison" min="0">
+      </div>
+      <div class="form-group">
+        <label for="fs_episode">Nombres totaux d'épisodes</label>
+        <input type="number" class="form-control" id="fs_episode" formControlName="fs_episode" min="0">
+      </div>
+    </ng-container>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-outline-info" (click)="onClickAdd()"
+        *ngIf="formAddFilm.valid">Envoyer</button>
+      <button type="reset" class="btn btn-outline-info ml-2">Reset</button>
+    </div>
+  </form>
+</div>

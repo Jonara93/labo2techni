@@ -1,0 +1,60 @@
+<h2>Listes des films et séries : </h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Synopsis</th>
+      <th scope="col">Type</th>
+      <th scope="col">Date de sortie</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Nombre(s) de saison(s)</th>
+      <th scope="col">Nombre total d'épisodes</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let fs of medias$ | async">
+      <td>{{ fs.fs_id }}</td>
+      <td>{{ fs.fs_nom}}</td>
+      <td>{{ fs.fs_synopsis }}</td>
+      <td>{{ fs.ty_type.ty_type }}</td>
+      <!-- <td>{{ fs.fs_date_sortie.date.day}}-{{ fs.fs_date_sortie.date.month}}-{{ fs.fs_date_sortie.date.year}}</td> -->
+      <td>{{fs.fs_date_sortie | date : 'longDate' : 'UTC' : 'fr'}}</td>
+      <td>{{ fs.ge_genre.ge_nom }}</td>
+      <ng-container *ngIf="fs.ty_type.ty_id === 1; else elseBlock">
+        <td>{{ fs.fs_saison }}</td>
+        <td>{{ fs.fs_episode }}</td>
+      </ng-container>
+      <ng-template #elseBlock>
+        <td>/</td>
+        <td>/</td>
+      </ng-template>
+      <td>
+        <a routerLink="detail/{{fs.fs_id}}">
+          <button type="button" class="btn btn-outline-info">Détails</button>
+        </a>
+      </td>
+      <td>
+        <a routerLink="update/{{fs.fs_id}}">
+          <button type="button" class="btn btn-outline-info">Modifier</button>
+        </a>
+      </td>
+      <td>
+        <button type="button" class="btn btn-outline-danger" (click)="onClickDelete(fs.fs_id)">Supprimer</button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="11">
+        <a routerLink="./addFilm">
+          <button type="button" class="btn btn-outline-primary">Ajouter</button>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<router-outlet></router-outlet>

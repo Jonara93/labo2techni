@@ -1,0 +1,53 @@
+<h2>Listes des personnes du métiers : </h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Date de Naissance</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let per of pers$ | async">
+      <td>{{ per.per_id }}</td>
+      <td>{{ per.per_nom}}</td>
+      <td>{{ per.per_prenom }}</td>
+      <td>{{ per.per_genre }}</td>
+      <td>{{per.per_ddn | date }}</td>
+      <td>
+        <button type="button" class="btn btn-outline-info" (click)="onClickDetail(per.per_id)">Détails</button>
+      </td>
+      <td>
+        <a routerLink="updatePersonne/{{per.per_id}}">
+          <button type=" button" class="btn btn-outline-info">Modifier</button>
+        </a>
+      </td>
+      <td>
+        <button type="button" class="btn btn-outline-danger" (click)="onClickDelete(per.per_id)">Supprimer</button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="11">
+        <a routerLink="addPersonne"><button type="button" class="btn btn-outline-primary">Ajouter</button></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ng-container *ngIf="toggleDetailPer && per">
+  <div class="card m-lg-auto" style="width: 18rem;">
+    <img src="{{per.per_url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{per.per_nom}} {{per.per_prenom}}</h5>
+      <p class="card-text">Nom : {{per.per_nom}}</p>
+      <p class="card-text">Prenom : {{per.per_prenom}}</p>
+      <p class="card-text">Date de naissance : {{per.per_ddn | date }}</p>
+      <p class="card-text">Genre : {{per.per_genre}} </p>
+    </div>
+  </div>
+</ng-container>

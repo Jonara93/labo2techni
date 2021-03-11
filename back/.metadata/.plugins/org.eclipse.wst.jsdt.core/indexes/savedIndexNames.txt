@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+F:\programmation\technifutur\java\cours\laboIntermediaire\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1231444669.index
+487133401.index
+4060750685.index
+1561535658.index
+674011577.index
+1511452614.index
+350781906.index

@@ -1,0 +1,30 @@
+.notInList {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.btn-outline {
+  color: #801872;
+  background-color: #ffffff;
+  border-color: #801872;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.btn-outline {
+  color: #801872;
+  background-color: #ffffff;
+  border-color: #801872;
+  font-weight: bold;
+  border-radius: 0;
+}
+
+.btn-outline:hover,
+.btn-outline:active,
+.btn-outline:focus,
+.btn-outline.active {
+  background: #801872;
+  color: #ffffff;
+  border-color: #801872;
+
+}

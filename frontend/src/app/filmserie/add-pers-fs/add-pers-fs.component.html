@@ -1,0 +1,32 @@
+<h2>Ajout de personnes ayant participé à {{film?.fs_nom}}</h2>
+
+<form [formGroup]="formAddPerToFS" *ngIf="allPers" class=" mt-2">
+  <div class="form-group">
+    <label for="acteursToAdd">Choix d'un ou de plusieurs acteur(s)</label>
+    <select class="custom-select" id="acteursToAdd" formControlName="acteursToAdd" [size]="allPers.length" multiple>
+      <option [value]="p.per_id" *ngFor="let p of allPers" [disabled]="isOnActeursList(p.per_id)"
+        [ngClass]="{'notInList':isOnActeursList(p.per_id)}">{{p.per_nom}}
+        {{p.per_prenom}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="realisateurToAdd">Choix d'un ou de plusieurs réalisateur(s)</label>
+    <select class="custom-select" id="realisateurToAdd" formControlName="realisateurToAdd" [size]="allPers.length"
+      multiple>
+      <option [value]="p.per_id" *ngFor="let p of allPers" [disabled]="isOnRealisateurList(p.per_id)"
+        [ngClass]="{'notInList':isOnRealisateurList(p.per_id)}">{{p.per_nom}}
+        {{p.per_prenom}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="producteursToAdd">Choix d'un ou de plusieurs producteur(s)</label>
+    <select class="custom-select" id="producteursToAdd" formControlName="producteursToAdd" [size]="allPers.length"
+      multiple>
+      <option [value]="p.per_id" *ngFor="let p of allPers" [disabled]="isOnProducteurList(p.per_id)"
+        [ngClass]="{'notInList':isOnProducteurList(p.per_id)}">{{p.per_nom}}
+        {{p.per_prenom}}</option>
+    </select>
+  </div>
+  <button type="submit" class=" btn btn-outline" (click)="addPersToFS(film.fs_id)"> Ajouter</button>
+  <!-- Demander pourquoi ça marche pas avec le (submit) quand il y a le routerLink -->
+</form>

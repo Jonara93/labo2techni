@@ -1,0 +1,3 @@
+INDEX VERSION 1.131
+F:\programmation\technifutur\java\cours\laboIntermediaire\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\350781906.index
+\GestionCollectionFilmSerie\src
